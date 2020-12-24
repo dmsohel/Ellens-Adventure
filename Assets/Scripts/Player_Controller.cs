@@ -10,6 +10,7 @@ public class Player_Controller : MonoBehaviour
     public Animator animator;
     public float speed;
     public float yjump;
+    public bool isDead;
 
 
 
@@ -24,6 +25,12 @@ public class Player_Controller : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        if (collision.gameObject.CompareTag("DeadPlatform")) 
+            {
+                isDead = true;
+           // DeadAnimation(isDead);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -34,6 +41,9 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
+  
+    
+
     private void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -43,6 +53,9 @@ public class Player_Controller : MonoBehaviour
         JumpAnimation(vertical);
         PhysicalMovementJump(vertical);
         PhysicalMovementRun(horizontal);
+        DeadAnimation(isDead);
+        
+
     }
 
     void RunAnimation(float horizontal)
@@ -90,6 +103,16 @@ public class Player_Controller : MonoBehaviour
         }
 
 
+    }
+
+    void DeadAnimation(bool isDead)
+    {
+        if (isDead == true)
+        {
+            animator.SetBool("Dead", true);
+             
+        }
+        
     }
 }
        
