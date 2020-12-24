@@ -49,7 +49,7 @@ public class Player_Controller : MonoBehaviour
         if (collision.gameObject.CompareTag("Level2"))
         {
             SceneManager.LoadScene(1);
-            Debug.Log("enter level2");
+         
         }
     }
 
@@ -119,8 +119,9 @@ public class Player_Controller : MonoBehaviour
         if (isDead == true)
         {
             animator.SetBool("Dead", true);
-             
+            SceneManager.LoadScene(0);
         }
+        
         
         
     }
