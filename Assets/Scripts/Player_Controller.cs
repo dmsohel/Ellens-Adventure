@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player_Controller : MonoBehaviour
 {
@@ -29,7 +31,8 @@ public class Player_Controller : MonoBehaviour
         if (collision.gameObject.CompareTag("DeadPlatform")) 
             {
                 isDead = true;
-           // DeadAnimation(isDead);
+            Application.Quit();
+           
         }
     }
 
@@ -41,8 +44,15 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
-  
-    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Level2"))
+        {
+            SceneManager.LoadScene(1);
+            Debug.Log("enter level2");
+        }
+    }
+
 
     private void Update()
     {
@@ -54,7 +64,6 @@ public class Player_Controller : MonoBehaviour
         PhysicalMovementJump(vertical);
         PhysicalMovementRun(horizontal);
         DeadAnimation(isDead);
-        
 
     }
 
@@ -112,6 +121,7 @@ public class Player_Controller : MonoBehaviour
             animator.SetBool("Dead", true);
              
         }
+        
         
     }
 }
