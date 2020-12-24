@@ -13,6 +13,7 @@ public class Player_Controller : MonoBehaviour
     public float speed;
     public float yjump;
     public bool isDead;
+  
 
 
 
@@ -31,7 +32,7 @@ public class Player_Controller : MonoBehaviour
         if (collision.gameObject.CompareTag("DeadPlatform")) 
             {
                 isDead = true;
-            Application.Quit();
+           
            
         }
     }
@@ -64,6 +65,7 @@ public class Player_Controller : MonoBehaviour
         PhysicalMovementJump(vertical);
         PhysicalMovementRun(horizontal);
         DeadAnimation(isDead);
+       
 
     }
 
@@ -120,10 +122,15 @@ public class Player_Controller : MonoBehaviour
         {
             animator.SetBool("Dead", true);
             SceneManager.LoadScene(0);
+           
         }
         
-        
-        
+
+       
+     
+
+
+
     }
 }
        
