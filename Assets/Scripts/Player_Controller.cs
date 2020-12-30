@@ -14,25 +14,27 @@ public class Player_Controller : MonoBehaviour
     public float speed;
     public float yjump;
     public ScoreController scoreController;
-
-     public  void DeathAnimation()
+   
+  
+    public  void DeathAnimation()
     {
-        animator.SetBool("Dead", true);
-        
+      animator.SetBool("Dead", true);
+       
+        SceneManager.LoadScene(0);
     }
 
     void Start()
     {
         _rigidbody2d = gameObject.GetComponent<Rigidbody2D>();
-        
     }
 
 
     public void PickUpKey()
-    {
-        
+    {  
         scoreController.IncreaseScore(10);
     }
+   
+   
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -81,12 +83,21 @@ public class Player_Controller : MonoBehaviour
 
     void JumpAnimation(float vertical)
     {
-        if (vertical > 0 && isGrounded == true)
+        if (vertical > 0 /*&& isGrounded == true */ && _rigidbody2d.velocity.y > 0)
         {
-            animator.SetBool("HJump", true);
+            animator.SetBool("PlayerUP", true);
+            animator.SetBool("PlayerDOWN", false);
         }
-        else if (vertical <= 0)
-            animator.SetBool("HJump", false);
+        else 
+        {
+            animator.SetBool("PlayerUP", false);
+            animator.SetBool("PlayerDOWN", true);
+        }
+        if (_rigidbody2d.velocity.y == 0)
+        {
+            animator.SetBool("PlayerDOWN", false);     
+        }
+
     }
 
     void PhysicalMovementRun(float horizontal)
@@ -100,9 +111,10 @@ public class Player_Controller : MonoBehaviour
     {
         if (vertical > 0 && isGrounded == true)
         {
-            Vector3 scale = transform.localScale;
-
+      
             _rigidbody2d.AddForce(new Vector2(0F, yjump), ForceMode2D.Impulse);
+            isGrounded = false;
+
 
         }
 
