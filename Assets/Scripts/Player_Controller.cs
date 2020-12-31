@@ -20,6 +20,10 @@ public class Player_Controller : MonoBehaviour
     {
       animator.SetBool("Dead", true);
        
+        
+    }
+    public void PlayerReloadScene()
+    {
         SceneManager.LoadScene(0);
     }
 
@@ -59,8 +63,8 @@ public class Player_Controller : MonoBehaviour
         float vertical = Input.GetAxis("Jump");
 
         RunAnimation(horizontal);
-        JumpAnimation(vertical);
         PhysicalMovementJump(vertical);
+        JumpAnimation(vertical);
         PhysicalMovementRun(horizontal);
     }
 
@@ -81,9 +85,9 @@ public class Player_Controller : MonoBehaviour
 
     }
 
-    void JumpAnimation(float vertical)
+   void JumpAnimation(float vertical)
     {
-        if (vertical > 0 /*&& isGrounded == true */ && _rigidbody2d.velocity.y > 0)
+       if (vertical > 0 && _rigidbody2d.velocity.y > 0)
         {
             animator.SetBool("PlayerUP", true);
             animator.SetBool("PlayerDOWN", false);
@@ -113,11 +117,9 @@ public class Player_Controller : MonoBehaviour
         {
       
             _rigidbody2d.AddForce(new Vector2(0F, yjump), ForceMode2D.Impulse);
-            isGrounded = false;
-
+          isGrounded = false;
 
         }
-
 
     }
 
