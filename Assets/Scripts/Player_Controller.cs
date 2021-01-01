@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -14,19 +13,19 @@ public class Player_Controller : MonoBehaviour
     public float speed;
     public float yjump;
     public ScoreController scoreController;
+    public GameOverController gameOverController;
    
   
     public  void DeathAnimation()
     {
       animator.SetBool("Dead", true);
        
-        
     }
-    public void PlayerReloadScene()
+    public void Gamecompletefunction()
     {
-        SceneManager.LoadScene(0);
+        this.enabled = false;
+        gameOverController.PlayerDead();
     }
-
     void Start()
     {
         _rigidbody2d = gameObject.GetComponent<Rigidbody2D>();
