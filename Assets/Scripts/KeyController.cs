@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyController : MonoBehaviour
 {
-    
+    public Player_Controller player_Controller;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Player_Controller>() != null)
@@ -15,5 +15,6 @@ public class KeyController : MonoBehaviour
         }
      
     }
+   
    
 }
