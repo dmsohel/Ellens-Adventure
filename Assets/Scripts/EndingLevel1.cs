@@ -11,7 +11,7 @@ public class EndingLevel1 : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Player_Controller>() != null) 
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
            
         }
     }
