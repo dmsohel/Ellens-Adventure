@@ -5019,6 +5019,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOver
       objectReference: {fileID: 0}
+    - target: {fileID: 1228912279915931699, guid: 23d45eacf1d20344b9479718adbcdb96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d45eacf1d20344b9479718adbcdb96, type: 3}
 --- !u!1001 &1374435993086300484
@@ -5125,12 +5130,12 @@ PrefabInstance:
     - target: {fileID: 2692254440447685438, guid: 44fba054a39eeb8489be5f064d58b26f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.63
+      value: 35.6
       objectReference: {fileID: 0}
     - target: {fileID: 2692254440447685438, guid: 44fba054a39eeb8489be5f064d58b26f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.57
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2692254440447685438, guid: 44fba054a39eeb8489be5f064d58b26f,
         type: 3}

@@ -7,9 +7,9 @@ public class LobbyController : MonoBehaviour
     public GameObject levelSelector;
     private void Awake()
     {
-        buttonPlay.onClick.AddListener(PlayLevel1);
+        buttonPlay.onClick.AddListener(showlevelselector);
     }
-    void PlayLevel1()
+    void showlevelselector()
     {
         levelSelector.SetActive(true);
     }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -16,6 +14,25 @@ public class LevelLoader : MonoBehaviour
     }
     private void onClick()
     {
-        SceneManager.LoadScene(Level);
+        LevelStatus levelstatus = LevelManager.Instance.GetLevelStatus(Level);
+        switch(levelstatus)
+            {
+
+            case LevelStatus.Locked:
+            Debug.Log("Locked level can't access");
+            break;
+
+            case LevelStatus.Unlocked:
+                Debug.Log("Level is Unlocked");
+                SceneManager.LoadScene(Level);
+                break;
+
+            case LevelStatus.Completed:
+                Debug.Log("Level is Completed");
+                SceneManager.LoadScene(Level);
+                break;
+        }
+
+        
     }
 }
