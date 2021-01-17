@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+
 public class LobbyController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -11,6 +12,8 @@ public class LobbyController : MonoBehaviour
     }
     void showlevelselector()
     {
+        
+        SoundManager.Instance.Play(Sounds.ButtonClick);
         levelSelector.SetActive(true);
     }
 }

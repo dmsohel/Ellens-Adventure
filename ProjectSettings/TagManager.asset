@@ -7,6 +7,10 @@ TagManager:
   - Platform
   - DeadPlatform
   - Level2
+  - SideWayTrigger
+  - UpDownTrigger
+  - SideWayTransporter
+  - UpWayTransporter
   layers:
   - Default
   - TransparentFX

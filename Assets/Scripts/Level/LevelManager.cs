@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     private static LevelManager instance;
     public static LevelManager Instance { get {return  instance; } }
 
-    public string level1;
+    public string level1,MainMenu;
     private void Awake()
     {
+      //PlayerPrefs.DeleteAll();
         if (instance == null)
         {
             instance = this;// it refers to the class LevelManager (using this we can call gameobject also this.gameobj)
@@ -17,12 +19,14 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+      
     }
 
     private void Start()
     {
-        if (GetLevelStatus(level1) == LevelStatus.Locked)
+        if (GetLevelStatus(level1) == LevelStatus.Locked || GetLevelStatus(MainMenu) == LevelStatus.Locked)
         {
+            SetLevelStatus(MainMenu, LevelStatus.Unlocked);
             SetLevelStatus(level1, LevelStatus.Unlocked);
         }
     }
@@ -32,12 +36,14 @@ public class LevelManager : MonoBehaviour
         Scene currentscene = SceneManager.GetActiveScene();
         Instance.SetLevelStatus(currentscene.name, LevelStatus.Completed);
         int nextsceneIndex = currentscene.buildIndex + 1;
-       // Scene nextscene = SceneManager.GetSceneByBuildIndex(nextsceneIndex);
-       // Instance.SetLevelStatus(nextscene.name, LevelStatus.Unlocked);
-        SceneManager.LoadScene(nextsceneIndex);
-        
-
-        //Instance.SetLevelStatus(nextscene.name, LevelStatus.Unlocked);
+        if (nextsceneIndex < 5)
+        {
+            SceneManager.LoadSceneAsync(nextsceneIndex);
+            // SceneManager.LoadScene(nextsceneIndex);
+            Scene nextscene = SceneManager.GetSceneByBuildIndex(nextsceneIndex);
+            Instance.SetLevelStatus(nextscene.name, LevelStatus.Unlocked);
+        }
+      
     }
     public LevelStatus GetLevelStatus(string level)
     {
@@ -48,5 +54,6 @@ public class LevelManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(level, (int)levelstatus);
     }
- 
+
+  
 }
