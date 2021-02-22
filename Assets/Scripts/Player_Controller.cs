@@ -14,6 +14,8 @@ public class Player_Controller : MonoBehaviour
     public float yjump;
     public ScoreController scoreController;
     public GameOverController gameOverController;
+    public GameObject Health1, Health2, Health3;
+    public int health = 3;
    
   
     public  void DeathAnimation()
@@ -23,12 +25,48 @@ public class Player_Controller : MonoBehaviour
     }
     public void Gamecompletefunction()
     {
+        Health3.gameObject.SetActive(false);
+        Health2.gameObject.SetActive(false);
+        Health1.gameObject.SetActive(false);
         this.enabled = false;
         gameOverController.PlayerDead();
     }
+     public void Lose_Health()
+    {
+        
+      //  Debug.Log(health);
+        switch (health)
+        {
+            case 3:
+                Health3.gameObject.SetActive(false);
+                Health2.gameObject.SetActive(true);
+                Health1.gameObject.SetActive(true);
+                health--;
+                break;
+            case 2:
+                Health3.gameObject.SetActive(false);
+                Health2.gameObject.SetActive(false);
+                Health1.gameObject.SetActive(true);
+                health--;
+                break;
+            case 1:
+                Health3.gameObject.SetActive(false);
+                Health2.gameObject.SetActive(false);
+                Health1.gameObject.SetActive(false);
+             //   health--;
+                DeathAnimation();
+                break;
+
+
+
+        }
+       
+    }
+
     void Start()
     {
         _rigidbody2d = gameObject.GetComponent<Rigidbody2D>();
+       
     }
 
 

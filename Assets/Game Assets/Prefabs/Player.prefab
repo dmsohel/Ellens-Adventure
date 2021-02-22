@@ -250,3 +250,7 @@ MonoBehaviour:
   yjump: 125
   scoreController: {fileID: 0}
   gameOverController: {fileID: 0}
+  Health1: {fileID: 0}
+  Health2: {fileID: 0}
+  Health3: {fileID: 0}
+  health: 3
