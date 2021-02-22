@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class FallDownDeathController : MonoBehaviour
 {
+   
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

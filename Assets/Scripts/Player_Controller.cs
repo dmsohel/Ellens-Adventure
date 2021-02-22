@@ -16,6 +16,7 @@ public class Player_Controller : MonoBehaviour
     public GameOverController gameOverController;
     public GameObject Health1, Health2, Health3;
     public int health = 3;
+    
    
   
     public  void DeathAnimation()
@@ -23,6 +24,7 @@ public class Player_Controller : MonoBehaviour
       animator.SetBool("Dead", true);
        
     }
+   
     public void Gamecompletefunction()
     {
         Health3.gameObject.SetActive(false);
