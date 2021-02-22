@@ -16,12 +16,15 @@ public class Player_Controller : MonoBehaviour
     public GameOverController gameOverController;
     public GameObject Health1, Health2, Health3;
     public int health = 3;
+    public ParticleSystem BloodParticles;
     
    
   
     public  void DeathAnimation()
     {
-      animator.SetBool("Dead", true);
+        SoundManager.Instance.Play(Sounds.PlayerDeath);
+        BloodParticles.Play();
+        animator.SetBool("Dead", true);
        
     }
    
@@ -35,8 +38,8 @@ public class Player_Controller : MonoBehaviour
     }
      public void Lose_Health()
     {
-        
-      //  Debug.Log(health);
+
+        BloodParticles.Play();
         switch (health)
         {
             case 3:
@@ -73,7 +76,8 @@ public class Player_Controller : MonoBehaviour
 
 
     public void PickUpKey()
-    {  
+    {
+        SoundManager.Instance.Play(Sounds.PickUPKey);
         scoreController.IncreaseScore(10);
     }
    
@@ -85,6 +89,17 @@ public class Player_Controller : MonoBehaviour
         {
             isGrounded = true;
         }
+        if (collision.gameObject.CompareTag("SideWayTransporter"))
+        {
+            isGrounded = true;
+            this.transform.parent = collision.transform;
+        }
+        if (collision.gameObject.CompareTag("UpWayTransporter"))
+        {
+            isGrounded = true;
+            this.transform.parent = collision.transform;
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -92,6 +107,17 @@ public class Player_Controller : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform"))
         {
             isGrounded = false;
+        }
+        if (collision.gameObject.CompareTag("SideWayTransporter"))
+        {
+            isGrounded = false;
+            this.transform.parent = null;
+
+        }
+        if (collision.gameObject.CompareTag("UpWayTransporter"))
+        {
+            isGrounded = false;
+            this.transform.parent = null;
         }
     }
 

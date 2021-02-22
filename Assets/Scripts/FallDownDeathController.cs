@@ -11,6 +11,7 @@ public class FallDownDeathController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Player_Controller>() != null)
         {
+           // SoundManager.Instance.PlayMusic(Sounds.Acid);
             Player_Controller player_Controller = collision.gameObject.GetComponent<Player_Controller>();
             player_Controller.DeathAnimation();
            
