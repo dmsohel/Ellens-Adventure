@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -14,25 +13,31 @@ public class Player_Controller : MonoBehaviour
     public float speed;
     public float yjump;
     public ScoreController scoreController;
-
-     public  void DeathAnimation()
+    public GameOverController gameOverController;
+   
+  
+    public  void DeathAnimation()
     {
-        animator.SetBool("Dead", true);
-        
+      animator.SetBool("Dead", true);
+       
     }
-
+    public void Gamecompletefunction()
+    {
+        this.enabled = false;
+        gameOverController.PlayerDead();
+    }
     void Start()
     {
         _rigidbody2d = gameObject.GetComponent<Rigidbody2D>();
-        
     }
 
 
     public void PickUpKey()
-    {
-        
+    {  
         scoreController.IncreaseScore(10);
     }
+   
+   
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -57,8 +62,8 @@ public class Player_Controller : MonoBehaviour
         float vertical = Input.GetAxis("Jump");
 
         RunAnimation(horizontal);
-        JumpAnimation(vertical);
         PhysicalMovementJump(vertical);
+        JumpAnimation(vertical);
         PhysicalMovementRun(horizontal);
     }
 
@@ -79,14 +84,23 @@ public class Player_Controller : MonoBehaviour
 
     }
 
-    void JumpAnimation(float vertical)
+   void JumpAnimation(float vertical)
     {
-        if (vertical > 0 && isGrounded == true)
+       if (vertical > 0 && _rigidbody2d.velocity.y > 0)
         {
-            animator.SetBool("HJump", true);
+            animator.SetBool("PlayerUP", true);
+            animator.SetBool("PlayerDOWN", false);
         }
-        else if (vertical <= 0)
-            animator.SetBool("HJump", false);
+        else 
+        {
+            animator.SetBool("PlayerUP", false);
+            animator.SetBool("PlayerDOWN", true);
+        }
+        if (_rigidbody2d.velocity.y == 0)
+        {
+            animator.SetBool("PlayerDOWN", false);     
+        }
+
     }
 
     void PhysicalMovementRun(float horizontal)
@@ -100,12 +114,11 @@ public class Player_Controller : MonoBehaviour
     {
         if (vertical > 0 && isGrounded == true)
         {
-            Vector3 scale = transform.localScale;
-
+      
             _rigidbody2d.AddForce(new Vector2(0F, yjump), ForceMode2D.Impulse);
+          isGrounded = false;
 
         }
-
 
     }
 

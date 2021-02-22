@@ -14,8 +14,6 @@ public class FallDownDeathController : MonoBehaviour
             player_Controller.DeathAnimation();
            
         }
-        
-        SceneManager.LoadScene(0);
 
     }
 }
